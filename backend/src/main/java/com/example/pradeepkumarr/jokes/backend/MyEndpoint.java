@@ -9,12 +9,13 @@ package com.example.pradeepkumarr.jokes.backend;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
+import com.example.Joke;
 
 import javax.inject.Named;
 
 /** An endpoint class we are exposing */
 @Api(
-  name = "myApi",
+  name = "jokeApi",
   version = "v1",
   namespace = @ApiNamespace(
     ownerDomain = "backend.jokes.pradeepkumarr.example.com",
@@ -32,5 +33,17 @@ public class MyEndpoint {
 
         return response;
     }
+
+    /**
+     * A simple endpoint method that tells a joke
+     */
+    @ApiMethod(name = "getJoke")
+    public MyBean getJoke() {
+        MyBean response = new MyBean();
+        String joke = Joke.getJoke();
+        response.setData(joke);
+        return response;
+    }
+
 
 }
