@@ -18,7 +18,7 @@ import com.prady.pradeepkumarr.jokeandroidlib.JokeActivity;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment {
+public class MainActivityFragment extends Fragment implements View.OnClickListener {
 
     private Button jokeButton;
     private ProgressBar mprogressBar;
@@ -38,10 +38,19 @@ public class MainActivityFragment extends Fragment {
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .build();
         mAdView.loadAd(adRequest);
+
+
+
+        jokeButton = (Button) root.findViewById(R.id.button);
+        jokeButton.setOnClickListener(this);
+
+        mprogressBar = (ProgressBar) root.findViewById(R.id.progressBar);
+        mprogressBar.setVisibility(View.GONE);
+
         return root;
     }
 
-    //@Override
+    @Override
     public void onClick(View v) {
         mprogressBar.setVisibility(View.VISIBLE);
        Toast.makeText(getActivity(), R.string.please_wait, Toast.LENGTH_SHORT).show();
